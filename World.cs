@@ -1,23 +1,27 @@
 public static class World
 {
-
+    // lists of things
     public static readonly List<Weapon> Weapons = new List<Weapon>();
     public static readonly List<Monster> Monsters = new List<Monster>();
     public static readonly List<Quest> Quests = new List<Quest>();
     public static readonly List<Location> Locations = new List<Location>();
     public static readonly Random RandomGenerator = new Random();
 
+    // weapons
     public const int WEAPON_ID_RUSTY_SWORD = 1;
     public const int WEAPON_ID_CLUB = 2;
 
+    // monsters
     public const int MONSTER_ID_RAT = 1;
     public const int MONSTER_ID_SNAKE = 2;
     public const int MONSTER_ID_GIANT_SPIDER = 3;
 
+    // quests
     public const int QUEST_ID_CLEAR_ALCHEMIST_GARDEN = 1;
     public const int QUEST_ID_CLEAR_FARMERS_FIELD = 2;
     public const int QUEST_ID_COLLECT_SPIDER_SILK = 3;
 
+    // locations
     public const int LOCATION_ID_HOME = 1;
     public const int LOCATION_ID_TOWN_SQUARE = 2;
     public const int LOCATION_ID_GUARD_POST = 3;
@@ -36,13 +40,14 @@ public static class World
         PopulateLocations();
     }
 
-
+    // makes and adds weapons to the list
     public static void PopulateWeapons()
     {
         Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusty sword", 5));
         Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10));
     }
 
+    // makes and adds monsters to the list
     public static void PopulateMonsters()
     {
         Monster rat = new Monster(MONSTER_ID_RAT, "rat", 1, 3, 3);
@@ -59,6 +64,7 @@ public static class World
         Monsters.Add(giantSpider);
     }
 
+    // makes and adds quests to the list
     public static void PopulateQuests()
     {
         Quest clearAlchemistGarden =
@@ -88,6 +94,7 @@ public static class World
         Quests.Add(clearSpidersForest);
     }
 
+    // makes location, binds them together, populates the locations with quests and monsters then adds them to the list
     public static void PopulateLocations()
     {
         // Create each location
@@ -153,6 +160,8 @@ public static class World
         Locations.Add(spiderField);
     }
 
+
+    // these methids return the item by its id from the list
     public static Location LocationByID(int id)
     {
         foreach (Location location in Locations)
@@ -178,8 +187,6 @@ public static class World
 
         return null;
     }
-
-
 
     public static Monster MonsterByID(int id)
     {
