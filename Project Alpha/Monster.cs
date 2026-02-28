@@ -1,3 +1,18 @@
-﻿internal class Monster
+﻿public class Monster
 {
+    public int Id;
+    public string Name;
+    public int MaximumDamage;
+    public int CurrentHitPoints;
+    public int MaximumHitPoints;
+
+    public Monster(int id, string name, int maximumdamage, int currenthitpoints, int maximumhitpoints)
+    {
+        Id = id;
+        Name = name;
+        MaximumDamage = maximumdamage;
+        CurrentHitPoints = currenthitpoints;
+        MaximumHitPoints = maximumhitpoints;
+    }
+    
 }

@@ -1,3 +1,4 @@
-﻿internal class Location
+﻿public class Location
 {
+    
 }
