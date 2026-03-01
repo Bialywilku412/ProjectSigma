@@ -1,12 +1,12 @@
 ﻿public class Weapon
 {
-    public int Id;
+    public int ID;
     public int MaximumDamage;
     public string Name;
 
     public Weapon(int id, string name, int maximumdamage)
     {
-        Id = id;
+        ID = id;
         Name = name;
         MaximumDamage = maximumdamage;
     }

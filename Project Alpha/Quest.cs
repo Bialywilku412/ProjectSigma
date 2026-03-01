@@ -1,12 +1,12 @@
 ﻿public class Quest
 {
-    public int Id;
+    public int ID;
     public string Name;
     public string Description;
 
     public Quest(int id, string name, string description)
     {
-        Id = id;
+        ID = id;
         Name = name;
         Description = description;
     }

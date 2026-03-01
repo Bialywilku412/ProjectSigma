@@ -5,9 +5,9 @@
         Console.WriteLine("Deafault setup");
 
         Console.WriteLine("Enter Hero's name");
-        string playerName = Console.ReadLine();
+        string playerName = Console.ReadLine() ?? "Bob"; // A default name
         //location has to be created yet
-        Player player = new Player(playerName, Weapon.Weapons[0], "home");
+        Player player = new Player(playerName, Weapon.Weapons[0], World.LocationByID(1));
 
         Console.WriteLine($"Your name is {player.Name}. You live in a town called Riverbend");
         Console.WriteLine("You always dreamed to be a hero. And now when you heard that your town is being terrorized by big spiders.");
