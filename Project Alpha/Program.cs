@@ -2,18 +2,27 @@
 {
     static void Main()
     {
-        Console.WriteLine("Deafault setup");
-
         Console.WriteLine("Enter Hero's name");
         string playerName = Console.ReadLine() ?? "Bob"; // A default name
-        //location has to be created yet
+
         Player player = new Player(playerName, Weapon.Weapons[0], World.LocationByID(1));
 
+        // this change is purely for aestheticall reasons, leaving this commented out if you guys prefer this way
+        /*
         Console.WriteLine($"Your name is {player.Name}. You live in a town called Riverbend");
         Console.WriteLine("You always dreamed to be a hero. And now when you heard that your town is being terrorized by big spiders.");
         Console.WriteLine("You decided to do all you can yo help your town");
         Console.WriteLine("In chest in your home there is a rusty sword that once your father fought with");
         Console.WriteLine("You take it and from now on you swear to protect people of your town");
+        */
+
+        Console.WriteLine(
+            $"Your name is {player.Name}. You live in a town called Riverbend\n" +
+            "You always dreamed to be a hero. And now when you heard that your town is being terrorized by big spiders.\n" +
+            "You decided to do all you can yo help your town\n" +
+            "In chest in your home there is a rusty sword that once your father fought with\n" +
+            "You take it and from now on you swear to protect people of your town\n"
+        );
 
         while (true)
         {

@@ -28,4 +28,52 @@
         }
     }
 
+    public bool Move(string direction)
+    {
+        switch (direction.ToLower())
+        {
+            case "south":
+                if (CurrentLocation.LocationToSouth != null)
+                {
+                    CurrentLocation = CurrentLocation.LocationToSouth;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "north":
+                if (CurrentLocation.LocationToNorth != null)
+                {
+                    CurrentLocation = CurrentLocation.LocationToNorth;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "west":
+                if (CurrentLocation.LocationToWest != null)
+                {
+                    CurrentLocation = CurrentLocation.LocationToWest;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "east":
+                if (CurrentLocation.LocationToEast != null)
+                {
+                    CurrentLocation = CurrentLocation.LocationToEast;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            default:
+                return false;
+        }
+    }
 }

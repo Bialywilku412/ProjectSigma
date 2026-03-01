@@ -22,4 +22,32 @@
         LocationToSouth = lopcationToSouth;
         LocationToWest = locationToWest;
     }
+
+    // shows surroundings, copy paste from code grade
+    public string Compas()
+    {
+        string s = "From here you can go:\n";
+        if (LocationToNorth != null)
+        {
+            s += "    N\n    |\n";
+        }
+        if (LocationToWest != null)
+        {
+            s += "W---|";
+        }
+        else
+        {
+            s += "    |";
+        }
+        if (LocationToEast != null)
+        {
+            s += "---E";
+        }
+        s += "\n";
+        if (LocationToSouth != null)
+        {
+            s += "    |\n    S\n";
+        }
+        return s;
+    }
 }
