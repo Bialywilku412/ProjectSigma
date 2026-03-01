@@ -26,17 +26,37 @@
 
         while (true)
         {
-            Console.WriteLine("What would you like yo do (Enter number)?");
-            int choice = Convert.ToInt32(Console.ReadLine());
-            switch (choice)
+            Console.WriteLine(
+                "[1] - Stats Check\n" +
+                "[2] - Move\n" +
+                "[3] - to be expanded\n"
+            );
+
+            Console.Write("What would you like to do?: ");
+
+            bool validInput = int.TryParse(Console.ReadLine() ?? "0", out int numChoice);
+
+            if (validInput)
             {
-                case 1:
-                    SeeGameStats(player);
-                    break;
-                case 2:
-                    Move(player);
-                    break;
+                switch (numChoice)
+                {
+                    case 1:
+                        SeeGameStats(player);
+                        break;
+                    case 2:
+                        // use Compas from Locations class to show where player can go
+                        // use move method from the player
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input, please enter a valid number");
+                        break;
+                }
             }
+            else
+            {
+                Console.WriteLine("Invalid input, please enter a number");
+            }
+
         }
     }
 
@@ -46,10 +66,10 @@
         Console.WriteLine($"Current weapon: {player.CurrentWeapon} Damage:1-{player.CurrentWeapon.MaximumDamage}");
     }
 
-    static void Move(Player player)
-    {
-        Console.WriteLine("Where would you like to go?");
-        Console.WriteLine($"You are at: {player.CurrentLocation}. From here you can go:");
-        // Location functions has to be implemented yet
-    }
+    //static void Move(Player player)
+    //{
+    //    Console.WriteLine("Where would you like to go?");
+    //    Console.WriteLine($"You are at: {player.CurrentLocation}. From here you can go:");
+    //    // Location functions has to be implemented yet
+    //}
 }
