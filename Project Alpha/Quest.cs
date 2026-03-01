@@ -9,6 +9,5 @@
         ID = id;
         Name = name;
         Description = description;
-    }
-    
+    } 
 }

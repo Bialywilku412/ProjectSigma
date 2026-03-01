@@ -16,8 +16,11 @@
     }
 
     public int Attack() => World.RandomGenerator.Next(1, CurrentWeapon.MaximumDamage + 1);
+
     public bool IsAlive() => CurrentHitPoints > 0;
+
     public void MoveTo(Location newLocation) => CurrentLocation = newLocation;
+
     public void TakeDamage(int damage)
     {
         CurrentHitPoints -= damage;

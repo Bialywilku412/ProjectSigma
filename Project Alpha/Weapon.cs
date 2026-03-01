@@ -16,5 +16,4 @@
         new Weapon(1, "Rusty Sword", 2)
 
     };
-
 }

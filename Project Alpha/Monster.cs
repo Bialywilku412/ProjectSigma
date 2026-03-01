@@ -13,6 +13,5 @@
         MaximumDamage = maximumdamage;
         CurrentHitPoints = currenthitpoints;
         MaximumHitPoints = maximumhitpoints;
-    }
-    
+    }  
 }
