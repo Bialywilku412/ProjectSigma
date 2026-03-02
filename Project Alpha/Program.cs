@@ -73,7 +73,7 @@
     static void SeeGameStats(Player player)
     {
         Console.WriteLine($"{player.Name}: {player.CurrentHitPoints}/{player.MaximumHitPoints}");
-        Console.WriteLine($"Current weapon: {player.CurrentWeapon} Damage:1-{player.CurrentWeapon.MaximumDamage}");
+        Console.WriteLine($"Current weapon: {player.CurrentWeapon.Name} Damage:1-{player.CurrentWeapon.MaximumDamage}");
     }
 
     //static void Move(Player player)
