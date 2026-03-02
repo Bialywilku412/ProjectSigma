@@ -42,19 +42,23 @@
                 {
                     case 1:
                         SeeGameStats(player);
+
                         break;
                     case 2:
-                        // use Compas from Locations class to show where player can go
-                        // use move method from the player
-                        Console.WriteLine("Where would you like to go?");
-                        Console.WriteLine($"You are at: {player.CurrentLocation}. From here you can go:");
-                        Console.WriteLine(player.CurrentLocation.Compas());
-                        string direction = Console.ReadLine();
-                        string move = player.Move(direction) ? $"You've travelled towards {player.CurrentLocation}." : $"You are unable to travel {direction}.";
+                        Console.WriteLine(
+                            "Where would you like to go?\n" +
+                            $"You are at: {player.CurrentLocation}\n" +
+                            $"{player.CurrentLocation.Compas()}"
+                        );
+
+                        string direction = Console.ReadLine() ?? "";
+                        string move = player.Move(direction) ? $"You've travelled towards the {player.CurrentLocation}." : $"You are unable to travel to the {direction}.";
                         Console.WriteLine(move);
+
                         break;
                     default:
                         Console.WriteLine("Invalid input, please enter a valid number");
+
                         break;
                 }
             }
