@@ -68,7 +68,6 @@ public static class World
                 "Kill rats in the alchemist's garden ");
 
 
-
         Quest clearFarmersField =
             new Quest(
                 QUEST_ID_CLEAR_FARMERS_FIELD,
