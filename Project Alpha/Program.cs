@@ -31,6 +31,7 @@
                 "[2] - Move\n" +
                 "[3] - to be expanded\n"
             );
+            Console.WriteLine(player.CurrentQuest == null ? "NO QUEST" : "HAS QUEST");
 
             Console.Write("What would you like to do?: ");
 
@@ -49,7 +50,7 @@
                             "Where would you like to go?\n" +
                             $"You are at: {player.CurrentLocation}\n" +
                             $"{player.CurrentLocation.Compas()}");
-                        if (player.CurrentLocation.MonsterLivingHere != null)
+                        if (player.CurrentLocation.MonsterLivingHere != null && player.CurrentQuest != null)
                         {
                             Battle(player.CurrentLocation.MonsterLivingHere, player);
                         }
@@ -78,6 +79,7 @@
     {
         Console.WriteLine($"{player.Name}: {player.CurrentHitPoints}/{player.MaximumHitPoints}");
         Console.WriteLine($"Current weapon: {player.CurrentWeapon.Name} Damage:1-{player.CurrentWeapon.MaximumDamage}");
+        Console.WriteLine($"Current Quest:{player.CurrentQuest.Name}");
     }
 
 
@@ -106,6 +108,8 @@
             {
                 Console.WriteLine($"You killed the {m.Name}!");
                 p.CurrentLocation.MonsterLivingHere = null; //checks if the monster bit the dust
+                CompleteQuest(p, m);
+
                 break;
             }
 
@@ -121,6 +125,24 @@
                 Console.WriteLine("You died. Game over.");
                 Environment.Exit(0);
             }
+        }
+    }
+
+    //Daniel Reward System
+    public static void CompleteQuest(Player p, Monster m)
+    {
+        if (p.CurrentQuest == null)
+            return;
+
+        if (p.CurrentQuest.ID == World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN && m.ID == World.MONSTER_ID_RAT)
+        {
+            Console.WriteLine("Quest completed: Clear the Alchemist's Garden!");
+
+            Console.WriteLine("Reward: Club weapon!");
+
+            p.CurrentWeapon = World.WeaponByID(World.WEAPON_ID_CLUB);
+
+            p.CurrentQuest = null;
         }
     }
 
