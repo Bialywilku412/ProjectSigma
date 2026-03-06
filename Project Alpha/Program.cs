@@ -29,7 +29,8 @@
             Console.WriteLine(
                 "[1] - Stats Check\n" +
                 "[2] - Move\n" +
-                "[3] - to be expanded\n"
+                "[3] - Inventory Check\n" +
+                "[4] - to be expanded\n"
             );
             Console.WriteLine(player.CurrentQuest == null ? "NO QUEST" : "HAS QUEST");
 
@@ -43,7 +44,6 @@
                 {
                     case 1:
                         SeeGameStats(player);
-
                         break;
                     case 2:
                         Console.WriteLine(
@@ -60,6 +60,9 @@
                         string move = player.Move(direction) ? $"You've travelled towards the {player.CurrentLocation}." : $"You are unable to travel to the {direction}.";
                         Console.WriteLine(move);
 
+                        break;
+                    case 3:
+                        Console.WriteLine(player.Open_inventory());
                         break;
                     default:
                         Console.WriteLine("Invalid input, please enter a valid number");
