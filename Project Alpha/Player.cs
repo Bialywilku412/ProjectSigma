@@ -5,27 +5,41 @@
     public int MaximumHitPoints;
     public Weapon CurrentWeapon;
     public Location CurrentLocation;
+    public Quest CurrentQuest;
 
-    public Player(string name, Weapon currentWeapon, Location currentLocation)
+    public Player(string name, Weapon currentWeapon, Location currentLocation, Quest currentQuest)
     {
         Name = name;
         MaximumHitPoints = 100;
         CurrentHitPoints = 100;
         CurrentWeapon = currentWeapon;
         CurrentLocation = currentLocation;
+        CurrentQuest = currentQuest;
     }
 
     public int Attack() => World.RandomGenerator.Next(1, CurrentWeapon.MaximumDamage + 1);
 
     public bool IsAlive() => CurrentHitPoints > 0;
 
-    public void MoveTo(Location newLocation) => CurrentLocation = newLocation;
+    public void MoveTo(Location newLocation)
+    {
+        CurrentLocation = newLocation;
+
+        if (CurrentLocation.QuestAvailableHere != null)
+        {
+            if (CurrentQuest == null || CurrentQuest.ID != CurrentLocation.QuestAvailableHere.ID)
+            {
+                CurrentQuest = CurrentLocation.QuestAvailableHere;
+                Console.WriteLine($"Your quest journey begins now. {this.CurrentQuest.Name}");
+            }
+        }
+    }
 
     public void TakeDamage(int damage)
     {
         CurrentHitPoints -= damage;
 
-        if (CurrentHitPoints < damage)
+        if (CurrentHitPoints < 0)
         {
             CurrentHitPoints = 0;
         }

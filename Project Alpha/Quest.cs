@@ -13,5 +13,4 @@
 
     public static List<Quest> Quests = new List<Quest>();
 
-    
 }
