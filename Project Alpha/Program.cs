@@ -5,7 +5,7 @@
         Console.WriteLine("Enter Hero's name");
         string playerName = Console.ReadLine() ?? "Bob"; // A default name
 
-        Player player = new Player(playerName, Weapon.Weapons[0], World.LocationByID(1));
+        Player player = new Player(playerName, World.WeaponByID(World.WEAPON_ID_RUSTY_SWORD), World.LocationByID(1), null);
 
         // this change is purely for aestheticall reasons, leaving this commented out if you guys prefer this way
         /*
