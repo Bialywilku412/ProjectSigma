@@ -48,8 +48,12 @@
                         Console.WriteLine(
                             "Where would you like to go?\n" +
                             $"You are at: {player.CurrentLocation}\n" +
-                            $"{player.CurrentLocation.Compas()}"
-                        );
+                            $"{player.CurrentLocation.Compas()}");
+                        if (player.CurrentLocation.MonsterLivingHere != null)
+                        {
+                            Battle(player.CurrentLocation.MonsterLivingHere, player);
+                        }
+
 
                         string direction = Console.ReadLine() ?? "";
                         string move = player.Move(direction) ? $"You've travelled towards the {player.CurrentLocation}." : $"You are unable to travel to the {direction}.";
@@ -74,6 +78,50 @@
     {
         Console.WriteLine($"{player.Name}: {player.CurrentHitPoints}/{player.MaximumHitPoints}");
         Console.WriteLine($"Current weapon: {player.CurrentWeapon.Name} Damage:1-{player.CurrentWeapon.MaximumDamage}");
+    }
+
+
+    //Daniel Battle logic
+    public static void Battle(Monster m, Player p)
+    {
+        Console.WriteLine($"A {m.Name} appears!");
+
+        while (m.CurrentHitPoints > 0 && p.IsAlive())
+        {
+            // Player attacks
+            int playerDamage = p.Attack();
+            Console.WriteLine($"{p.Name} Choose an action\n Attack - 1");
+            string attack = Console.ReadLine();
+
+            if (attack == "1")
+            {
+                m.CurrentHitPoints -= playerDamage;
+
+                Console.WriteLine($"You hit the {m.Name} for {playerDamage} damage.");
+
+            }
+
+
+            if (m.CurrentHitPoints <= 0)
+            {
+                Console.WriteLine($"You killed the {m.Name}!");
+                p.CurrentLocation.MonsterLivingHere = null; //checks if the monster bit the dust
+                break;
+            }
+
+            // Monster attacks
+            int monsterDamage = World.RandomGenerator.Next(1, m.MaximumDamage + 1);
+            p.TakeDamage(monsterDamage);
+
+            Console.WriteLine($"The {m.Name} hits you for {monsterDamage} damage.");
+            Console.WriteLine($"Your HP: {p.CurrentHitPoints}/{p.MaximumHitPoints}");
+
+            if (!p.IsAlive())
+            {
+                Console.WriteLine("You died. Game over.");
+                Environment.Exit(0);
+            }
+        }
     }
 
     //static void Move(Player player)
