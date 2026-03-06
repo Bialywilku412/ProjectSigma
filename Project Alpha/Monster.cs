@@ -14,12 +14,4 @@
         CurrentHitPoints = currenthitpoints;
         MaximumHitPoints = maximumhitpoints;
     }
-    public static void attack(Monster m)
-    {
-        Random random = new Random();
-        int attack = random.Next(1, m.MaximumDamage);
-        Console.WriteLine($"{m.Name} attacked and striked! You lost: {attack}hp");
-    }
-
-
 }
