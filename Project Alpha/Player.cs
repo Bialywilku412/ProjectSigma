@@ -1,4 +1,6 @@
-﻿internal class Player
+﻿using System.Net;
+
+internal class Player
 {
     public string Name;
     public int CurrentHitPoints;
@@ -23,14 +25,39 @@
 
     public void MoveTo(Location newLocation)
     {
-        CurrentLocation = newLocation;
+        this.CurrentLocation = newLocation;
 
         if (CurrentLocation.QuestAvailableHere != null)
         {
             if (CurrentQuest == null || CurrentQuest.ID != CurrentLocation.QuestAvailableHere.ID)
             {
-                CurrentQuest = CurrentLocation.QuestAvailableHere;
-                Console.WriteLine($"Your quest journey begins now. {this.CurrentQuest.Name}");
+                Console.WriteLine($"\nYou arived at {newLocation.Name}.");
+                Console.WriteLine($"There is a Quest available {CurrentLocation.QuestAvailableHere.Name}");
+                Console.WriteLine("Do you Acept this Quest? (yes/no)");
+                string choice = Console.ReadLine().ToLower();
+
+                if (choice == "yes")
+                {
+                    this.CurrentQuest = CurrentLocation.QuestAvailableHere;
+                    Console.WriteLine($"Your quest journey begins now. {this.CurrentQuest.Name}");
+                }
+                else if (choice == "no")
+                {
+                    Console.WriteLine("You are about to abort the Quest are you really not man enough to take it?");
+                    Console.WriteLine("yes / no");
+                    string choice_2 = Console.ReadLine().ToLower();
+
+                    if (choice_2 == "yes" || choice_2 == "no")
+                    {
+                        this.CurrentQuest = CurrentLocation.QuestAvailableHere;
+                        Console.WriteLine($"Thats what we like to see you Quest start now. {this.CurrentQuest.Name}");                       
+                    }
+                    else
+                    {
+                        Console.WriteLine("You canceled the Quest chicken");
+                    }
+                }
+                
             }
         }
     }
@@ -52,7 +79,7 @@
             case "south":
                 if (CurrentLocation.LocationToSouth != null)
                 {
-                    CurrentLocation = CurrentLocation.LocationToSouth;
+                    MoveTo(CurrentLocation.LocationToSouth);
                     return true;
                 }
                 else
@@ -62,7 +89,7 @@
             case "north":
                 if (CurrentLocation.LocationToNorth != null)
                 {
-                    CurrentLocation = CurrentLocation.LocationToNorth;
+                    MoveTo(CurrentLocation.LocationToNorth);
                     return true;
                 }
                 else
@@ -72,7 +99,7 @@
             case "west":
                 if (CurrentLocation.LocationToWest != null)
                 {
-                    CurrentLocation = CurrentLocation.LocationToWest;
+                    MoveTo(CurrentLocation.LocationToWest);
                     return true;
                 }
                 else
@@ -82,7 +109,7 @@
             case "east":
                 if (CurrentLocation.LocationToEast != null)
                 {
-                    CurrentLocation = CurrentLocation.LocationToEast;
+                    MoveTo(CurrentLocation.LocationToEast);
                     return true;
                 }
                 else

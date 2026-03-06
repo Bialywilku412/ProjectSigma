@@ -178,8 +178,6 @@ public static class World
         return null;
     }
 
-
-
     public static Monster MonsterByID(int id)
     {
         foreach (Monster monster in Monsters)
