@@ -129,7 +129,7 @@ internal class Player
         {
             foreach (Weapon weapon in Inventory.Values)
             {
-                inventory += " - {weapon.Name}\n";
+                inventory += $" - {weapon.Name}\n";
             }
         }
         else
@@ -139,12 +139,17 @@ internal class Player
         return inventory;
     }
 
-    public void Add_to_Inventory(Weapon weapon) => Inventory.Add(weapon.Name, weapon);
+    public void Add_to_Inventory(Weapon weapon) => Inventory.Add(weapon.Name.ToLower(), weapon);
 
-    public void Equip_Weapon(string name)
+    public bool Equip_Weapon(string name)
     {
-        Inventory.Add(CurrentWeapon.Name, CurrentWeapon);
-        CurrentWeapon = Inventory[name];
-        Inventory.Remove(name);
+        if (Inventory.Keys.Contains(name))
+        {
+            Inventory.Add(CurrentWeapon.Name, CurrentWeapon);
+            CurrentWeapon = Inventory[name];
+            Inventory.Remove(name);
+            return true;
+        }
+        return false;
     }
 }

@@ -63,6 +63,22 @@
                         break;
                     case 3:
                         Console.WriteLine(player.Open_inventory());
+                        Console.Write("Do you want to change you current weapon (Yes / No): ");
+                        var choice = Console.ReadLine()!.ToLower();
+                        switch (choice)
+                        {
+                            case "yes":
+                                Console.Write("Which weapon do you want to equip (Name): ");
+                                string weapon = Console.ReadLine()!;
+                                Console.WriteLine(player.Equip_Weapon(weapon) ? $"\nSuccsesfully equiped {weapon}\n" : $"\nUnable to equip {weapon}\n");
+                                break;
+                            case "no":
+                                Console.WriteLine("\nReturning to main menu\n");
+                                break;
+                            default:
+                                Console.WriteLine("\nInvalid input\n");
+                                break;
+                        }
                         break;
                     default:
                         Console.WriteLine("Invalid input, please enter a valid number");
@@ -143,7 +159,7 @@
 
             Console.WriteLine("Reward: Club weapon!");
 
-            p.CurrentWeapon = World.WeaponByID(World.WEAPON_ID_CLUB);
+            p.Add_to_Inventory(World.WeaponByID(World.WEAPON_ID_CLUB));
 
             p.CurrentQuest = null;
         }
