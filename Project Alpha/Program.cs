@@ -2,6 +2,7 @@
 {
     static void Main()
     {
+        int restAmountOver = 3;
         Console.WriteLine("Enter Hero's name");
         string playerName = Console.ReadLine() ?? "Bob"; // A default name
 
@@ -29,7 +30,8 @@
             Console.WriteLine(
                 "[1] - Stats Check\n" +
                 "[2] - Move\n" +
-                "[3] - to be expanded\n"
+                "[3] - Rest\n" +
+                "[4] - to be expanded\n"
             );
             Console.WriteLine(player.CurrentQuest == null ? "NO QUEST" : "HAS QUEST");
 
@@ -60,6 +62,18 @@
                         string move = player.Move(direction) ? $"You've travelled towards the {player.CurrentLocation}." : $"You are unable to travel to the {direction}.";
                         Console.WriteLine(move);
 
+                        break;
+                    case 3:
+                        if (restAmountOver > 0)
+                        {
+                            player.CurrentHitPoints += 30;
+                            restAmountOver--;
+                            Console.WriteLine($"You have recovered, rests over: {restAmountOver}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You can't rest anymore");
+                        }
                         break;
                     default:
                         Console.WriteLine("Invalid input, please enter a valid number");
@@ -109,6 +123,12 @@
                 Console.WriteLine($"You killed the {m.Name}!");
                 p.CurrentLocation.MonsterLivingHere = null; //checks if the monster bit the dust
                 CompleteQuest(p, m);
+
+                if (m.ID == World.MONSTER_ID_GIANT_SPIDER)
+                {
+                    Console.WriteLine("Congratulations, you won the game!");
+                    Environment.Exit(0);
+                }
 
                 break;
             }
