@@ -142,6 +142,7 @@
 
             p.CurrentWeapon = World.WeaponByID(World.WEAPON_ID_CLUB);
 
+            p.CompletedQuests++;
             p.CurrentQuest = null;
         }
     }
