@@ -10,7 +10,4 @@
         Name = name;
         Description = description;
     }
-
-    public static List<Quest> Quests = new List<Quest>();
-
 }
