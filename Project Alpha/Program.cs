@@ -30,9 +30,9 @@
             Console.WriteLine(
                 "[1] - Stats Check\n" +
                 "[2] - Move\n" +
-                "[3] - Inventory Check\n" +
                 "[3] - Rest\n" +
-                "[4] - to be expanded\n"
+                "[4] - Inventory Check\n" +
+                "[5] - to be expanded\n"
             );
             Console.WriteLine(player.CurrentQuest == null ? "NO QUEST" : "HAS QUEST");
 
@@ -64,6 +64,18 @@
 
                         break;
                     case 3:
+                        if (restAmountOver > 0)
+                        {
+                            player.CurrentHitPoints += 30;
+                            restAmountOver--;
+                            Console.WriteLine($"You have recovered, rests over: {restAmountOver}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You can't rest anymore");
+                        }
+                        break;
+                    case 4:
                         Console.WriteLine(player.Open_inventory());
                         Console.Write("Do you want to change you current weapon (Yes / No): ");
                         var choice = Console.ReadLine()!.ToLower();
@@ -80,20 +92,10 @@
                             default:
                                 Console.WriteLine("\nInvalid input\n");
                                 break;
-                        if (restAmountOver > 0)
-                        {
-                            player.CurrentHitPoints += 30;
-                            restAmountOver--;
-                            Console.WriteLine($"You have recovered, rests over: {restAmountOver}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("You can't rest anymore");
                         }
                         break;
                     default:
                         Console.WriteLine("Invalid input, please enter a valid number");
-
                         break;
                 }
             }
