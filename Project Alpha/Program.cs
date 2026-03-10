@@ -69,7 +69,7 @@
                         Console.WriteLine("Consumables");
                         Console.Write("Which would you like to see: ");
                         string category = Console.ReadLine()!;
-                        Console.WriteLine($"\n {player.Open_inventory(category)}");
+                        Console.WriteLine($"\n {player.Openinventory(category)}");
                         if (category.ToLower() == "weapons")
                         {
                             Console.Write("Do you want to change you current weapon (Yes / No): ");

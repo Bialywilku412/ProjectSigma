@@ -24,7 +24,7 @@
     public int Attack() => World.RandomGenerator.Next(1, CurrentWeapon.MaximumDamage + 1);
 
     public bool IsAlive() => CurrentHitPoints > 0;
-
+  
     public void MoveTo(Location newLocation)
     {
         if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests < 3)
@@ -135,7 +135,7 @@
         }
     }
 
-    public string Open_inventory(string category)
+    public string Openinventory(string category)
     {
         string inventory = "";
         if (category.ToLower() == "weapon")
