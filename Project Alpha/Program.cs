@@ -28,8 +28,13 @@
             Console.WriteLine(player.CurrentQuest == null ? "NO QUEST" : "HAS QUEST");
 
             Console.Write("What would you like to do?: ");
+            if (player.CurrentLocation.MonsterLivingHere != null && player.CurrentQuest != null)
+            {
+                Battle(player.CurrentLocation.MonsterLivingHere, player);
+            }
 
             bool validInput = int.TryParse(Console.ReadLine() ?? "0", out int numChoice);
+            
 
             if (validInput)
             {
@@ -43,10 +48,7 @@
                             "Where would you like to go?\n" +
                             $"You are at: {player.CurrentLocation}\n" +
                             $"{player.CurrentLocation.Compas()}");
-                        if (player.CurrentLocation.MonsterLivingHere != null && player.CurrentQuest != null)
-                        {
-                            Battle(player.CurrentLocation.MonsterLivingHere, player);
-                        }
+
 
 
                         string direction = Console.ReadLine() ?? "";
