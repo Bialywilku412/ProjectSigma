@@ -9,6 +9,7 @@ internal class Player
     public Location CurrentLocation;
     public Quest CurrentQuest;
     public readonly Dictionary<string, Weapon> Inventory = new();
+    public int CompletedQuests = 0;
 
     public Player(string name, Weapon currentWeapon, Location currentLocation, Quest currentQuest)
     {
@@ -26,6 +27,18 @@ internal class Player
 
     public void MoveTo(Location newLocation)
     {
+        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests < 3)
+        {
+            Console.WriteLine("\nThe guard stops you.");
+            Console.WriteLine("\"You cannot cross the bridge yet.\"");
+            Console.WriteLine("\"Come back after you complete 3 quests for the town.\"");
+            return;
+        }
+
+        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests >= 3)
+        {
+            Console.WriteLine("\nGuard: \"I see you've helped the town. You may pass.\"");
+        }
         this.CurrentLocation = newLocation;
 
         if (CurrentLocation.QuestAvailableHere != null)

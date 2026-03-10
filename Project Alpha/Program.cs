@@ -2,6 +2,7 @@
 {
     static void Main()
     {
+        int restAmountOver = 3;
         Console.WriteLine("Enter Hero's name");
         string playerName = Console.ReadLine() ?? "Bob"; // A default name
 
@@ -30,6 +31,7 @@
                 "[1] - Stats Check\n" +
                 "[2] - Move\n" +
                 "[3] - Inventory Check\n" +
+                "[3] - Rest\n" +
                 "[4] - to be expanded\n"
             );
             Console.WriteLine(player.CurrentQuest == null ? "NO QUEST" : "HAS QUEST");
@@ -78,6 +80,15 @@
                             default:
                                 Console.WriteLine("\nInvalid input\n");
                                 break;
+                        if (restAmountOver > 0)
+                        {
+                            player.CurrentHitPoints += 30;
+                            restAmountOver--;
+                            Console.WriteLine($"You have recovered, rests over: {restAmountOver}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You can't rest anymore");
                         }
                         break;
                     default:
@@ -129,6 +140,12 @@
                 p.CurrentLocation.MonsterLivingHere = null; //checks if the monster bit the dust
                 CompleteQuest(p, m);
 
+                if (m.ID == World.MONSTER_ID_GIANT_SPIDER)
+                {
+                    Console.WriteLine("Congratulations, you won the game!");
+                    Environment.Exit(0);
+                }
+
                 break;
             }
 
@@ -161,6 +178,7 @@
 
             p.Add_to_Inventory(World.WeaponByID(World.WEAPON_ID_CLUB));
 
+            p.CompletedQuests++;
             p.CurrentQuest = null;
         }
     }
