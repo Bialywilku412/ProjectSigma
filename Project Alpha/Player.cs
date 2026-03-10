@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-internal class Player
+﻿public class Player
 {
     public string Name;
     public int CurrentHitPoints;
@@ -8,7 +6,8 @@ internal class Player
     public Weapon CurrentWeapon;
     public Location CurrentLocation;
     public Quest CurrentQuest;
-    public readonly Dictionary<string, Weapon> Inventory = new();
+    public readonly Dictionary<string, Weapon> Weapons = new();
+    public Consumable Consumables;
     public int CompletedQuests = 0;
 
     public Player(string name, Weapon currentWeapon, Location currentLocation, Quest currentQuest)
@@ -19,6 +18,7 @@ internal class Player
         CurrentWeapon = currentWeapon;
         CurrentLocation = currentLocation;
         CurrentQuest = currentQuest;
+        Consumables = new(this);
     }
 
     public int Attack() => World.RandomGenerator.Next(1, CurrentWeapon.MaximumDamage + 1);
@@ -135,34 +135,45 @@ internal class Player
         }
     }
 
-    public string Open_inventory()
+    public string Open_inventory(string category)
     {
-        string inventory = "=======Inventory=======\n";
-        if (Inventory.Count() > 0)
+        string inventory = "";
+        if (category.ToLower() == "weapon")
         {
-            foreach (Weapon weapon in Inventory.Values)
+            foreach (Weapon weapon in Weapons.Values)
             {
                 inventory += $" - {weapon.Name}\n";
             }
         }
+        else if (category.ToLower() == "consumable")
+        {
+            foreach (string consumable in Consumables.Consumables.Keys)
+            {
+
+                inventory += $" - {consumable}: {Consumables.Consumables[consumable]}\n";
+            }
+        }
         else
         {
-            inventory += $"\n         Empty         \n";
+            inventory += "\nInvalid input\n";
         }
         return inventory;
     }
 
-    public void Add_to_Inventory(Weapon weapon) => Inventory.Add(weapon.Name.ToLower(), weapon);
+    public void AddWeapon(Weapon weapon) => Weapons.Add(weapon.Name.ToLower(), weapon);
+    public void AddConsumable(string name, int amount) => Consumables.Consumables[name] += amount;
 
-    public bool Equip_Weapon(string name)
+    public bool EquipWeapon(string name)
     {
-        if (Inventory.Keys.Contains(name))
+        if (Weapons.Keys.Contains(name))
         {
-            Inventory.Add(CurrentWeapon.Name, CurrentWeapon);
-            CurrentWeapon = Inventory[name];
-            Inventory.Remove(name);
+            Weapons.Add(CurrentWeapon.Name, CurrentWeapon);
+            CurrentWeapon = Weapons[name];
+            Weapons.Remove(name);
             return true;
         }
         return false;
     }
+
+    public bool usePotion(string name) => Consumables.UseConsumable(name);
 }

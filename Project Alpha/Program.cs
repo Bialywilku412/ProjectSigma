@@ -31,8 +31,8 @@
                 "[1] - Stats Check\n" +
                 "[2] - Move\n" +
                 "[3] - Inventory Check\n" +
-                "[3] - Rest\n" +
-                "[4] - to be expanded\n"
+                "[4] - Rest\n" +
+                "[5] - to be expanded\n"
             );
             Console.WriteLine(player.CurrentQuest == null ? "NO QUEST" : "HAS QUEST");
 
@@ -64,22 +64,46 @@
 
                         break;
                     case 3:
-                        Console.WriteLine(player.Open_inventory());
-                        Console.Write("Do you want to change you current weapon (Yes / No): ");
-                        var choice = Console.ReadLine()!.ToLower();
-                        switch (choice)
+                        Console.WriteLine("=======Inventory=======");
+                        Console.WriteLine("Weapons");
+                        Console.WriteLine("Consumables");
+                        Console.Write("Which would you like to see: ");
+                        string category = Console.ReadLine()!;
+                        Console.WriteLine($"\n {player.Open_inventory(category)}");
+                        if (category.ToLower() == "weapons")
                         {
-                            case "yes":
-                                Console.Write("Which weapon do you want to equip (Name): ");
-                                string weapon = Console.ReadLine()!;
-                                Console.WriteLine(player.Equip_Weapon(weapon) ? $"\nSuccsesfully equiped {weapon}\n" : $"\nUnable to equip {weapon}\n");
-                                break;
-                            case "no":
-                                Console.WriteLine("\nReturning to main menu\n");
-                                break;
-                            default:
-                                Console.WriteLine("\nInvalid input\n");
-                                break;
+                            Console.Write("Do you want to change you current weapon (Yes / No): ");
+                            string choice = Console.ReadLine()!.ToLower();
+                            switch (choice)
+                            {
+                                case "yes":
+                                    Console.Write("Which weapon do you want to equip (Name): ");
+                                    string weapon = Console.ReadLine()!;
+                                    Console.WriteLine(player.EquipWeapon(weapon) ? $"\nSuccsesfully equiped {weapon}\n" : $"\nUnable to equip {weapon}\n");
+                                    break;
+                                default:
+                                    Console.WriteLine(choice == "no" ? $"\nReturning to main menu\n" : $"\nInvalid input\n");
+                                    break;
+                            }
+                        }
+                        else if (category.ToLower() == "Consumables")
+                        {
+                            Console.Write("Do you want to a potion (Yes / No): ");
+                            string choice = Console.ReadLine()!.ToLower();
+                            switch (choice)
+                            {
+                                case "yes":
+                                    Console.Write("Which potion do you want to use (Name): ");
+                                    string potion = Console.ReadLine()!;
+                                    Console.WriteLine(player.usePotion(potion) ? $"\nSuccsesfully equiped {potion}\n" : $"\nUnable to equip {potion}\n");
+                                    break;
+                                default:
+                                    Console.WriteLine(choice == "no" ? $"\nReturning to main menu\n" : $"\nInvalid input\n");
+                                    break;
+                            }
+                        }
+                        break;
+                    case 4:
                         if (restAmountOver > 0)
                         {
                             player.CurrentHitPoints += 30;
@@ -95,6 +119,7 @@
                         Console.WriteLine("Invalid input, please enter a valid number");
 
                         break;
+                    
                 }
             }
             else
@@ -176,7 +201,7 @@
 
             Console.WriteLine("Reward: Club weapon!");
 
-            p.Add_to_Inventory(World.WeaponByID(World.WEAPON_ID_CLUB));
+            p.AddWeapon(World.WeaponByID(World.WEAPON_ID_CLUB));
 
             p.CompletedQuests++;
             p.CurrentQuest = null;
