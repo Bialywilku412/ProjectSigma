@@ -2,7 +2,7 @@
 {
     static void Main()
     {
-        int restAmountOver = 3;
+        int restAmountOver = 2;
         Console.WriteLine("Enter Hero's name");
         string playerName = Console.ReadLine() ?? "Bob"; // A default name
 
