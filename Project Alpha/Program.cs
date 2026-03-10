@@ -107,7 +107,6 @@
         if (player.CurrentQuest != null) { Console.WriteLine($"Current Quest:{player.CurrentQuest.Name}"); }
     }
 
-
     //Daniel Battle logic
     public static void Battle(Monster m, Player p)
     {
