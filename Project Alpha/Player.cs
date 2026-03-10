@@ -8,6 +8,7 @@ internal class Player
     public Weapon CurrentWeapon;
     public Location CurrentLocation;
     public Quest CurrentQuest;
+    public readonly Dictionary<string, Weapon> Inventory = new();
     public int CompletedQuests = 0;
 
     public Player(string name, Weapon currentWeapon, Location currentLocation, Quest currentQuest)
@@ -132,5 +133,36 @@ internal class Player
             default:
                 return false;
         }
+    }
+
+    public string Open_inventory()
+    {
+        string inventory = "=======Inventory=======\n";
+        if (Inventory.Count() > 0)
+        {
+            foreach (Weapon weapon in Inventory.Values)
+            {
+                inventory += $" - {weapon.Name}\n";
+            }
+        }
+        else
+        {
+            inventory += $"\n         Empty         \n";
+        }
+        return inventory;
+    }
+
+    public void Add_to_Inventory(Weapon weapon) => Inventory.Add(weapon.Name.ToLower(), weapon);
+
+    public bool Equip_Weapon(string name)
+    {
+        if (Inventory.Keys.Contains(name))
+        {
+            Inventory.Add(CurrentWeapon.Name, CurrentWeapon);
+            CurrentWeapon = Inventory[name];
+            Inventory.Remove(name);
+            return true;
+        }
+        return false;
     }
 }

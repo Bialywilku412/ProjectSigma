@@ -30,6 +30,7 @@
             Console.WriteLine(
                 "[1] - Stats Check\n" +
                 "[2] - Move\n" +
+                "[3] - Inventory Check\n" +
                 "[3] - Rest\n" +
                 "[4] - to be expanded\n"
             );
@@ -45,7 +46,6 @@
                 {
                     case 1:
                         SeeGameStats(player);
-
                         break;
                     case 2:
                         Console.WriteLine(
@@ -64,6 +64,22 @@
 
                         break;
                     case 3:
+                        Console.WriteLine(player.Open_inventory());
+                        Console.Write("Do you want to change you current weapon (Yes / No): ");
+                        var choice = Console.ReadLine()!.ToLower();
+                        switch (choice)
+                        {
+                            case "yes":
+                                Console.Write("Which weapon do you want to equip (Name): ");
+                                string weapon = Console.ReadLine()!;
+                                Console.WriteLine(player.Equip_Weapon(weapon) ? $"\nSuccsesfully equiped {weapon}\n" : $"\nUnable to equip {weapon}\n");
+                                break;
+                            case "no":
+                                Console.WriteLine("\nReturning to main menu\n");
+                                break;
+                            default:
+                                Console.WriteLine("\nInvalid input\n");
+                                break;
                         if (restAmountOver > 0)
                         {
                             player.CurrentHitPoints += 30;
@@ -160,7 +176,7 @@
 
             Console.WriteLine("Reward: Club weapon!");
 
-            p.CurrentWeapon = World.WeaponByID(World.WEAPON_ID_CLUB);
+            p.Add_to_Inventory(World.WeaponByID(World.WEAPON_ID_CLUB));
 
             p.CompletedQuests++;
             p.CurrentQuest = null;
