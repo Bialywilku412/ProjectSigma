@@ -35,7 +35,7 @@ internal class Player
             return;
         }
 
-        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests >= 3)
+        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests >= 2)
         {
             Console.WriteLine("\nGuard: \"I see you've helped the town. You may pass.\"");
         }
