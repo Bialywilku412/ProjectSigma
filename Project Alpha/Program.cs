@@ -67,13 +67,13 @@
                         Console.WriteLine("=======Inventory=======");
                         Console.WriteLine("Weapons");
                         Console.WriteLine("Consumables");
-                        Console.Write("Which would you like to see: ");
+                        Console.Write("\nWhich would you like to see: ");
                         string category = Console.ReadLine()!;
-                        Console.WriteLine($"\n {player.Openinventory(category)}");
+                        Console.WriteLine($"\n {player.OpenInventory(category)}");
                         if (category.ToLower() == "weapons")
                         {
                             Console.Write("Do you want to change you current weapon (Yes / No): ");
-                            string choice = Console.ReadLine()!.ToLower();
+                            string choice = Console.ReadLine().ToLower();
                             switch (choice)
                             {
                                 case "yes":
@@ -89,7 +89,7 @@
                         else if (category.ToLower() == "Consumables")
                         {
                             Console.Write("Do you want to a potion (Yes / No): ");
-                            string choice = Console.ReadLine()!.ToLower();
+                            string choice = Console.ReadLine().ToLower();
                             switch (choice)
                             {
                                 case "yes":

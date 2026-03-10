@@ -135,7 +135,7 @@
         }
     }
 
-    public string Openinventory(string category)
+    public string OpenInventory(string category)
     {
         string inventory = "";
         if (category.ToLower() == "weapon")
@@ -155,7 +155,7 @@
         }
         else
         {
-            inventory += "\nInvalid input\n";
+            inventory += "\nInvalid Input\n";
         }
         return inventory;
     }
