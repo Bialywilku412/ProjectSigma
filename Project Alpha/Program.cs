@@ -70,7 +70,7 @@
                         Console.Write("\nWhich would you like to see: ");
                         string category = Console.ReadLine()!;
                         Console.WriteLine($"\n {player.OpenInventory(category)}");
-                        if (category.ToLower() == "weapons")
+                        if (category == "Weapons")
                         {
                             Console.Write("Do you want to change you current weapon (Yes / No): ");
                             string choice = Console.ReadLine().ToLower();
@@ -86,7 +86,7 @@
                                     break;
                             }
                         }
-                        else if (category.ToLower() == "Consumables")
+                        else if (category == "Consumables")
                         {
                             Console.Write("Do you want to a potion (Yes / No): ");
                             string choice = Console.ReadLine().ToLower();
@@ -95,7 +95,7 @@
                                 case "yes":
                                     Console.Write("Which potion do you want to use (Name): ");
                                     string potion = Console.ReadLine()!;
-                                    Console.WriteLine(player.usePotion(potion) ? $"\nSuccsesfully equiped {potion}\n" : $"\nUnable to equip {potion}\n");
+                                    Console.WriteLine(player.UsePotion(potion) ? $"\nSuccsesfully used {potion}\n" : $"\nYou don't have any {potion}\n");
                                     break;
                                 default:
                                     Console.WriteLine(choice == "no" ? $"\nReturning to main menu\n" : $"\nInvalid input\n");

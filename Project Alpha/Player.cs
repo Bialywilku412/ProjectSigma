@@ -138,14 +138,14 @@
     public string OpenInventory(string category)
     {
         string inventory = "";
-        if (category.ToLower() == "weapon")
+        if (category == "Weapons")
         {
             foreach (Weapon weapon in Weapons.Values)
             {
                 inventory += $" - {weapon.Name}\n";
             }
         }
-        else if (category.ToLower() == "consumable")
+        else if (category == "Consumables")
         {
             foreach (string consumable in Consumables.Consumables.Keys)
             {
@@ -175,5 +175,5 @@
         return false;
     }
 
-    public bool usePotion(string name) => Consumables.UseConsumable(name);
+    public bool UsePotion(string name) => Consumables.UseConsumable(name);
 }
