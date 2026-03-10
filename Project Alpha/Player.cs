@@ -27,7 +27,7 @@ internal class Player
 
     public void MoveTo(Location newLocation)
     {
-        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests < 3)
+        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests < 2)
         {
             Console.WriteLine("\nThe guard stops you.");
             Console.WriteLine("\"You cannot cross the bridge yet.\"");
@@ -35,7 +35,7 @@ internal class Player
             return;
         }
 
-        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests >= 2)
+        if (newLocation.ID == World.LOCATION_ID_BRIDGE && CompletedQuests == 2)
         {
             Console.WriteLine("\nGuard: \"I see you've helped the town. You may pass.\"");
         }
