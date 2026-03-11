@@ -30,7 +30,10 @@
             Console.Write("What would you like to do?: ");
             if (player.CurrentLocation.MonsterLivingHere != null && player.CurrentQuest != null)
             {
-                Battle(player.CurrentLocation.MonsterLivingHere, player);
+                foreach(var monster in player.CurrentLocation.MonsterLivingHere)
+                {
+                    Battle(monster, player);
+                }
             }
 
             bool validInput = int.TryParse(Console.ReadLine() ?? "0", out int numChoice);
@@ -166,7 +169,7 @@
         if (p.CurrentQuest == null)
             return;
 
-        if (p.CurrentQuest.ID == World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN && m.ID == World.MONSTER_ID_RAT)
+        if (p.CurrentQuest.ID == World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN && m.ID == World.MONSTER_ID_RAT_A)
         {
             Console.WriteLine("Quest completed: Clear the Alchemist's Garden!");
 

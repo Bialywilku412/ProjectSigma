@@ -4,19 +4,19 @@
     public string Name;
     public string Description;
     public Quest QuestAvailableHere;
-    public Monster MonsterLivingHere;
+    public List<Monster> MonsterLivingHere = new List<Monster>();
     public Location LocationToNorth;
     public Location LocationToEast;
     public Location LocationToSouth;
     public Location LocationToWest;
 
-    public Location(int iD, string name, string description, Quest questAvailableHere, Monster monasterLivingHere, Location locationToNorth = null, Location locationToEast = null, Location lopcationToSouth = null, Location locationToWest = null)
+    public Location(int iD, string name, string description, Quest questAvailableHere, /*Monster monasterLivingHere, */Location locationToNorth = null, Location locationToEast = null, Location lopcationToSouth = null, Location locationToWest = null)
     {
         ID = iD;
         Name = name;
         Description = description;
         QuestAvailableHere = questAvailableHere;
-        MonsterLivingHere = monasterLivingHere;
+        // MonsterLivingHere = monasterLivingHere;
         LocationToNorth = locationToNorth;
         LocationToEast = locationToEast;
         LocationToSouth = lopcationToSouth;
