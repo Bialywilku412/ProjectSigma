@@ -61,7 +61,7 @@ internal class Player
                     Console.WriteLine("yes / no");
                     string choice_2 = Console.ReadLine().ToLower();
 
-                    if (choice_2 == "yes" || choice_2 == "no")
+                    if (choice_2 == "yes")
                     {
                         this.CurrentQuest = CurrentLocation.QuestAvailableHere;
                         Console.WriteLine($"Thats what we like to see you Quest start now. {this.CurrentQuest.Name}");
