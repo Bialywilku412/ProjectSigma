@@ -62,7 +62,7 @@
                     case 3:
                         if (restAmountOver > 0)
                         {
-                            player.CurrentHitPoints += 30;
+                            player.CurrentHitPoints = player.CurrentHitPoints + 30 < 100 ? player.CurrentHitPoints + 30 : player.MaximumHitPoints;
                             restAmountOver--;
                             Console.WriteLine($"You have recovered, rests over: {restAmountOver}");
                         }
